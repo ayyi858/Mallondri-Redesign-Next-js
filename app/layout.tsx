@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { DM_Sans, Manrope, Inter } from "next/font/google";
+import { DM_Sans, Manrope, Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
+import Chatbot from "@/components/Chatbot";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -23,6 +24,12 @@ const inter = Inter({
   display: "swap",
 });
 
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Mallondri | Laundry Profesional Standar Hotel - Tinambung Sulawesi Barat",
   description:
@@ -32,6 +39,10 @@ export const metadata: Metadata = {
     title: "Mallondri - Laundry Profesional Tinambung",
     description: "Layanan laundry profesional standar hotel. Antar jemput gratis.",
     type: "website",
+    images: ["/img/logo.jpg"],
+  },
+  icons: {
+    icon: "/img/favicon.ico",
   },
   robots: "index, follow",
 };
@@ -44,11 +55,12 @@ export default function RootLayout({
   return (
     <html lang="id" className="scroll-smooth">
       <body
-        className={`${dmSans.variable} ${manrope.variable} ${inter.variable} font-sans antialiased`}
+        className={`${dmSans.variable} ${manrope.variable} ${inter.variable} ${montserrat.variable} font-sans antialiased`}
       >
         <Navbar />
         {children}
         <Footer />
+        <Chatbot />
         <WhatsAppWidget />
       </body>
     </html>

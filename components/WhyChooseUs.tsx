@@ -81,16 +81,29 @@ export default function WhyChooseUs() {
     <section
       id="keunggulan"
       ref={sectionRef}
-      className="bg-primary/[0.04] py-24 lg:py-32"
+      className="bg-primary/4 py-24 lg:py-32"
       aria-labelledby="why-heading"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <h2 id="why-heading" className="font-heading text-3xl font-semibold tracking-tight text-primary sm:text-4xl">
-          Mengapa Memilih Kami
-        </h2>
-        <p className="mt-3 max-w-2xl text-primary/75">
-          Komitmen kami: kualitas, kecepatan, dan kepuasan pelanggan.
-        </p>
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/60">
+              Keunggulan Mallondri
+            </p>
+            <h2
+              id="why-heading"
+              className="mt-2 font-heading text-3xl font-bold tracking-tight text-primary sm:text-4xl"
+            >
+              Mengapa Pelanggan Memilih Kami
+            </h2>
+            <p className="mt-3 max-w-2xl text-primary/75">
+              Kombinasi kualitas hasil, kecepatan proses, dan layanan yang konsisten membuat Mallondri dipercaya ratusan pelanggan.
+            </p>
+          </div>
+          <p className="max-w-sm text-sm text-primary/60 md:text-right">
+            Fokus kami adalah memberikan pengalaman laundry yang rapi, mudah, dan bebas ribet.
+          </p>
+        </div>
 
         <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {BENEFITS.map((b) => (

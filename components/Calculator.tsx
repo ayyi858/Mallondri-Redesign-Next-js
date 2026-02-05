@@ -78,14 +78,22 @@ export default function Calculator() {
       aria-labelledby="calculator-heading"
     >
       <div className="mx-auto max-w-2xl px-4 lg:px-8">
-        <h2 id="calculator-heading" className="font-heading text-3xl font-semibold text-primary sm:text-4xl">
-          Kalkulator Harga
-        </h2>
-        <p className="mt-3 text-primary/80">
-          Hitung perkiraan biaya sesuai layanan dan jumlah.
-        </p>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/60">
+            Perkiraan Biaya
+          </p>
+          <h2
+            id="calculator-heading"
+            className="mt-2 font-heading text-3xl font-bold text-primary sm:text-4xl"
+          >
+            Kalkulator Harga Laundry
+          </h2>
+          <p className="mt-3 text-primary/80">
+            Simulasikan biaya berdasarkan jenis layanan, jumlah, dan tambahan yang Anda pilih.
+          </p>
+        </div>
 
-        <div className="mt-10 rounded-xl border border-primary/10 bg-white p-6 shadow-sm sm:p-8">
+        <div className="mt-10 rounded-2xl border border-primary/10 bg-white p-6 shadow-card sm:p-8">
           <label htmlFor="calc-service" className="block text-sm font-medium text-primary">
             Layanan
           </label>

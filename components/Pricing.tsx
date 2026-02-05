@@ -79,39 +79,35 @@ export default function Pricing() {
     { scope: sectionRef }
   );
 
-  useGSAP(
-    () => {
-      gsap.utils.toArray<HTMLElement>(".pricing-card").forEach((card) => {
-        gsap.to(card, {
-          y: -8,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 88%",
-            end: "top 52%",
-            scrub: 0.7,
-          },
-        });
-      });
-    },
-    { scope: sectionRef }
-  );
-
   return (
     <section
       id="paket"
       ref={sectionRef}
-      className="bg-white py-24 lg:py-32"
+      className="scroll-mt-20 bg-slate-50 py-24 lg:py-32"
       aria-labelledby="pricing-heading"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <h2 id="pricing-heading" className="font-heading text-3xl font-semibold tracking-tight text-primary sm:text-4xl">
-          Paket Langganan
-        </h2>
-        <p className="mt-3 max-w-2xl text-primary/75">
-          Pilih paket sesuai kebutuhan. Semua harga sudah termasuk bonus.
-        </p>
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/60">
+              Paket Berlangganan
+            </p>
+            <h2
+              id="pricing-heading"
+              className="mt-2 font-heading text-3xl font-bold tracking-tight text-primary sm:text-4xl"
+            >
+              Paket Laundry Mallondri
+            </h2>
+            <p className="mt-3 max-w-2xl text-primary/75">
+              Struktur paket yang jelas untuk kebutuhan pribadi, keluarga, hingga pelanggan dengan volume tinggi.
+            </p>
+          </div>
+          <p className="max-w-sm text-sm text-primary/60 md:text-right">
+            Semua paket sudah termasuk antar jemput area Tinambung dan kualitas setara standar hotel.
+          </p>
+        </div>
 
-        <div ref={cardsRef} className="mt-20 grid gap-8 md:grid-cols-3">
+        <div ref={cardsRef} className="mt-16 grid gap-8 md:grid-cols-3">
           {PLANS.map((plan) => (
             <article
               key={plan.id}
@@ -151,7 +147,7 @@ export default function Pricing() {
                   href={`${WHATSAPP_LINK}?text=Halo, saya tertarik ${plan.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full justify-center rounded-xl bg-accent px-4 py-3.5 text-sm font-medium text-white shadow-lg shadow-accent/20 transition-shadow hover:shadow-xl hover:shadow-accent/25"
+                  className="inline-flex w-full justify-center rounded-xl bg-accent px-4 py-3.5 text-sm font-medium text-white shadow-card transition-colors hover:bg-[#e6651d]"
                 >
                   Pesan via WhatsApp
                 </a>

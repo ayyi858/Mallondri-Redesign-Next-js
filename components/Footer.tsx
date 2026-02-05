@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const FOOTER_LINKS = {
   paket: [
@@ -27,8 +28,14 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
-            <Link href="#beranda" className="font-heading text-xl font-semibold text-primary">
-              Mallondri
+            <Link href="#beranda" className="inline-block" aria-label="Mallondri - Beranda">
+              <Image
+                src="/img/Mallondri LOGO.png"
+                alt="Mallondri"
+                width={160}
+                height={40}
+                className="h-5 w-auto"
+              />
             </Link>
             <p className="mt-4 text-sm text-primary/70">
               Laundry profesional standar hotel. Tinambung, Sulawesi Barat.
@@ -88,7 +95,7 @@ export default function Footer() {
         </div>
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-primary/10 pt-8 md:flex-row">
           <p className="text-sm text-primary/70">
-            Made with <span aria-hidden>❤️</span> in Tinambung
+            Mallondri · Tinambung, Sulawesi Barat
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-sm text-primary/70 hover:text-primary">

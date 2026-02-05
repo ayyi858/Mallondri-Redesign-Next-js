@@ -37,7 +37,7 @@ export default function FinalCTA() {
       aria-labelledby="final-cta-heading"
     >
       <div className="mx-auto max-w-3xl px-4 text-center lg:px-8">
-        <h2 id="final-cta-heading" className="font-heading text-3xl font-semibold tracking-tight text-primary sm:text-4xl">
+        <h2 id="final-cta-heading" className="font-heading text-3xl font-bold tracking-tight text-primary sm:text-4xl">
           Siap Mencoba Layanan Kami?
         </h2>
         <p className="mt-5 text-primary/75">

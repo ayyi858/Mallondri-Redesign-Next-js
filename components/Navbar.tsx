@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { NAV_LINKS, WHATSAPP_LINK } from "@/lib/constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -53,10 +54,17 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link
           href="#beranda"
-          className="nav-item font-heading text-xl font-semibold tracking-tight text-primary"
+          className="nav-item flex items-center"
           aria-label="Mallondri - Beranda"
         >
-          Mallondri
+          <Image
+            src="/img/Mallondri LOGO.png"
+            alt="Logo Mallondri"
+            width={160}
+            height={40}
+            priority
+            className="h-5 w-auto"
+          />
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex" role="menubar">
@@ -79,7 +87,7 @@ export default function Navbar() {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="nav-item inline-flex rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-accent/20 transition-shadow hover:shadow-xl hover:shadow-accent/25"
+              className="nav-item inline-flex items-center justify-center rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-card shadow-accent/20 transition-transform hover:-translate-y-0.5"
               aria-label="Hubungi via WhatsApp"
             >
               WhatsApp

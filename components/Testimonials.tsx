@@ -15,7 +15,7 @@ const REVIEWS = [
     package: "Paket JURAGAN",
     text: "Paket JURAGAN sangat worth it. Cucian selalu rapi dan wangi. Antar jemput gratis bikin saya tidak perlu keluar rumah.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=128&h=128&fit=crop&crop=face",
+    image: "/img/testimonials/1.jpg",
   },
   {
     name: "Ahmad Rizki",
@@ -82,18 +82,40 @@ export default function Testimonials() {
     <section
       id="testimoni"
       ref={sectionRef}
-      className="overflow-hidden bg-white py-24 lg:py-32"
+      className="overflow-hidden bg-slate-50 py-24 lg:py-32"
       aria-labelledby="testimonials-heading"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <h2 id="testimonials-heading" className="font-heading text-3xl font-semibold tracking-tight text-primary sm:text-4xl">
-          Testimoni Pelanggan
-        </h2>
-        <p className="mt-3 max-w-2xl text-primary/75">
-          Apa kata mereka tentang Mallondri.
-        </p>
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/60">
+              Bukti Sosial
+            </p>
+            <h2
+              id="testimonials-heading"
+              className="mt-2 font-heading text-3xl font-bold tracking-tight text-primary sm:text-4xl"
+            >
+              Testimoni Pelanggan
+            </h2>
+            <p className="mt-3 max-w-2xl text-primary/75">
+              Cerita nyata dari pelanggan yang rutin mempercayakan cucian mereka ke Mallondri.
+            </p>
+          </div>
 
-        <div className="relative mt-20 overflow-hidden">
+          <div className="hidden gap-3 rounded-2xl border border-primary/10 bg-white/70 px-4 py-3 text-sm text-primary/70 shadow-card md:flex md:items-center">
+            <div className="flex -space-x-2">
+              <span className="h-7 w-7 rounded-full bg-primary/20" />
+              <span className="h-7 w-7 rounded-full bg-primary/15" />
+              <span className="h-7 w-7 rounded-full bg-primary/10" />
+            </div>
+            <div>
+              <p className="font-medium text-primary">1200+ pelanggan puas</p>
+              <p className="text-xs text-primary/60">Rata-rata rating 5.0 bintang</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative mt-16 overflow-hidden">
           <div
             ref={trackRef}
             className="flex"
@@ -105,7 +127,7 @@ export default function Testimonials() {
                 className="flex shrink-0 flex-col items-center px-4 md:px-16"
                 style={{ width: `${100 / REVIEWS.length}%` }}
               >
-                <div className="max-w-2xl rounded-2xl border border-primary/10 bg-white p-10 shadow-card shadow-card-hover transition-shadow md:p-12">
+                <div className="max-w-2xl rounded-3xl border border-primary/10 bg-white/90 p-10 shadow-card shadow-card-hover backdrop-blur-sm transition-shadow md:p-12">
                   <div className="flex items-center gap-5">
                     <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-primary/10">
                       <Image
@@ -128,7 +150,7 @@ export default function Testimonials() {
                       </svg>
                     ))}
                   </div>
-                  <p className="mt-6 text-primary/90 leading-relaxed">&ldquo;{r.text}&rdquo;</p>
+                  <p className="mt-6 leading-relaxed text-primary/90">&ldquo;{r.text}&rdquo;</p>
                 </div>
               </div>
             ))}
@@ -140,10 +162,12 @@ export default function Testimonials() {
                 key={i}
                 type="button"
                 onClick={() => setIndex(i)}
-                aria-selected={index === i}
+                aria-pressed={index === i}
                 aria-label={`Testimoni ${i + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === i ? "w-8 bg-primary" : "w-2 bg-primary/25 hover:bg-primary/40"
+                className={`h-1.5 rounded-full border border-transparent transition-all duration-300 ${
+                  index === i
+                    ? "w-8 border-primary/40 bg-primary"
+                    : "w-2 border-primary/10 bg-primary/15 hover:bg-primary/30"
                 }`}
               />
             ))}

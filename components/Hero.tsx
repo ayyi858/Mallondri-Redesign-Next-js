@@ -62,23 +62,6 @@ export default function Hero() {
     { scope: sectionRef }
   );
 
-  useGSAP(
-    () => {
-      if (!imageRef.current) return;
-      gsap.to(imageRef.current, {
-        y: -30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 0.8,
-        },
-      });
-    },
-    { scope: sectionRef }
-  );
-
   return (
     <section
       id="beranda"
@@ -88,14 +71,19 @@ export default function Hero() {
     >
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 px-4 lg:grid-cols-[3fr_2fr] lg:gap-20 lg:px-8">
         <div ref={contentRef} className="flex flex-col justify-center lg:max-w-xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/60">
+            Laundry Profesional
+          </p>
           <h1
             ref={titleRef}
-            className="font-heading text-4xl font-semibold leading-[1.15] tracking-tight text-primary sm:text-5xl lg:text-[3.25rem]"
+            className="mt-3 font-heading text-4xl font-bold leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-[3.25rem]"
           >
-            Mencuci Kini Bukan Tugasmu
+            <span className="block">Mencuci Kini</span>
+            <span className="block">Bukan Tugasmu</span>
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-primary/80">
-            Layanan laundry profesional standar hotel. Cuci, setrika, dan antar jemput—semua dalam satu langkah.
+            Kami memahami betapa berharganya waktu Anda dan pentingnya penampilan yang selalu rapi. Mallondri Laundry
+            hadir sebagai solusi laundry yang praktis, andal, dan berkualitas tinggi di Tinambung.
           </p>
 
           <ul className="mt-10 flex flex-wrap gap-8 sm:gap-12" role="list" aria-label="Statistik">
@@ -115,17 +103,17 @@ export default function Hero() {
             <MagneticCTA>
               <Link
                 href="#paket"
-                className="inline-flex items-center justify-center rounded-xl bg-accent px-7 py-4 text-sm font-medium text-white shadow-lg shadow-accent/25 transition-shadow hover:shadow-xl hover:shadow-accent/30"
+                className="inline-flex items-center justify-center rounded-xl bg-accent px-7 py-4 text-sm font-medium text-white shadow-card shadow-accent/20 transition-transform hover:-translate-y-0.5"
               >
-                Lihat Paket
+                Lihat Paket Layanan
               </Link>
             </MagneticCTA>
             <MagneticCTA>
               <Link
                 href="#kalkulator"
-                className="inline-flex items-center justify-center rounded-xl border-2 border-primary/30 bg-white px-7 py-4 text-sm font-medium text-primary transition-colors hover:border-primary hover:bg-primary/5"
+                className="inline-flex items-center justify-center rounded-xl border border-primary/25 bg-white px-7 py-4 text-sm font-medium text-primary shadow-card transition-colors hover:border-primary hover:bg-primary/5"
               >
-                Hitung Biaya
+                Simulasikan Biaya
               </Link>
             </MagneticCTA>
           </div>
@@ -133,7 +121,7 @@ export default function Hero() {
 
         <div
           ref={imageRef}
-          className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-primary/5 shadow-card lg:aspect-auto lg:min-h-[520px]"
+          className="relative aspect-4/3 overflow-hidden rounded-2xl bg-primary/5 shadow-card lg:aspect-auto lg:min-h-[520px]"
         >
           <HeroImage
             alt="Layanan laundry profesional Mallondri"

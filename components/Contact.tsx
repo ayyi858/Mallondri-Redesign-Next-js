@@ -53,19 +53,29 @@ export default function Contact() {
       aria-labelledby="contact-heading"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <h2 id="contact-heading" className="font-heading text-3xl font-semibold text-primary sm:text-4xl">
-          Kontak
-        </h2>
-        <p className="mt-3 max-w-2xl text-primary/80">
-          Hubungi kami atau isi form untuk konsultasi.
-        </p>
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/60">
+              Hubungi Kami
+            </p>
+            <h2 id="contact-heading" className="mt-2 font-heading text-3xl font-bold text-primary sm:text-4xl">
+              Kontak Mallondri
+            </h2>
+            <p className="mt-3 max-w-2xl text-primary/80">
+              Silakan hubungi kami untuk pertanyaan, kerja sama, atau konsultasi kebutuhan laundry Anda.
+            </p>
+          </div>
+          <p className="max-w-sm text-sm text-primary/60 md:text-right">
+            Balasan biasanya dalam waktu singkat selama jam operasional.
+          </p>
+        </div>
 
         <div className="mt-16 grid gap-12 lg:grid-cols-2">
           <div className="space-y-6">
             {INFO.map((item) => (
               <div
                 key={item.label}
-                className="contact-card flex gap-5 rounded-2xl border border-primary/10 bg-white p-6 shadow-card"
+                className="contact-card flex gap-5 rounded-2xl border border-primary/10 bg-white p-6 shadow-card shadow-card-hover"
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -91,7 +101,7 @@ export default function Contact() {
             ))}
           </div>
 
-          <div className="contact-card rounded-2xl border border-primary/10 bg-white p-8 shadow-card">
+          <div className="contact-card rounded-2xl border border-primary/10 bg-white p-8 shadow-card shadow-card-hover">
             <h3 className="font-heading text-xl font-semibold tracking-tight text-primary">Kirim Pesan</h3>
             <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               <div>
@@ -138,7 +148,7 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                className="w-full rounded-lg bg-accent px-4 py-3 text-sm font-medium text-white transition-transform hover:scale-[1.02]"
+                className="w-full rounded-lg bg-accent px-4 py-3 text-sm font-medium text-white shadow-card transition-transform hover:-translate-y-0.5"
               >
                 Kirim via WhatsApp
               </button>
