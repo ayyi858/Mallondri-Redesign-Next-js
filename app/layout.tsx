@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { DM_Sans, Manrope, Inter, Montserrat } from "next/font/google";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = "G-BZFZTXVJN3";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chatbot from "@/components/Chatbot";
@@ -72,6 +75,18 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${manrope.variable} ${inter.variable} ${montserrat.variable} font-sans antialiased`}
       >
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <AOSProvider>
           <Navbar />
           {children}
