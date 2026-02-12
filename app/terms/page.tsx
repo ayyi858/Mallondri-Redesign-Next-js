@@ -1,8 +1,9 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Syarat & Ketentuan | Mallondri",
-  description: "Syarat dan ketentuan layanan Mallondri laundry.",
+  title: "Syarat & Ketentuan | Mallondri Laundry Tinambung",
+  description: "Syarat dan ketentuan layanan Mallondri laundry Tinambung.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

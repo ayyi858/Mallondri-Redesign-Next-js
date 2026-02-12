@@ -43,10 +43,14 @@ export const metadata: Metadata = {
   description:
     "Mallondri laundry Tinambung – laundry profesional di Tinambung. Paket BOS, JURAGAN, SULTAN. Antar jemput gratis, express 3 jam, 1200+ pelanggan.",
   keywords: ["mallondri", "mallondri tinambung", "mallondri laundry", "laundry Tinambung", "laundry Sulawesi Barat"],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Mallondri - Mallondri Laundry Tinambung",
     description: "Mallondri laundry Tinambung – layanan laundry profesional. Antar jemput gratis.",
     type: "website",
+    url: "https://mallondri.my.id",
     images: ["/img/logo.jpg"],
   },
   icons: {
@@ -62,6 +66,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="scroll-smooth">
+      <head>
+        <link rel="sitemap" type="application/xml" href="https://mallondri.my.id/sitemap.xml" />
+      </head>
       <body
         className={`${dmSans.variable} ${manrope.variable} ${inter.variable} ${montserrat.variable} font-sans antialiased`}
       >

@@ -1,8 +1,9 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Kebijakan Privasi | Mallondri",
-  description: "Kebijakan privasi Mallondri laundry.",
+  title: "Kebijakan Privasi | Mallondri Laundry Tinambung",
+  description: "Kebijakan privasi Mallondri laundry Tinambung.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {
