@@ -59,35 +59,18 @@ function StatCounter({ value, suffix, label }: { value: number; suffix: string; 
 export default function WhyChooseUs() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      gsap.from(".benefit-card", {
-        opacity: 0,
-        y: 36,
-        stagger: 0.07,
-        duration: 0.55,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 82%",
-          toggleActions: "play none none none",
-        },
-      });
-    },
-    { scope: sectionRef }
-  );
-
   return (
     <section
       id="keunggulan"
       ref={sectionRef}
       className="bg-primary/4 py-24 lg:py-32"
       aria-labelledby="why-heading"
+      data-aos="fade-up"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/60">
+            <p className="section-label">
               Keunggulan Mallondri
             </p>
             <h2
@@ -105,11 +88,17 @@ export default function WhyChooseUs() {
           </p>
         </div>
 
-        <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {BENEFITS.map((b) => (
+        <div
+          className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          data-aos="fade-up"
+          data-aos-delay="150"
+        >
+          {BENEFITS.map((b, i) => (
             <div
               key={b.title}
-              className="benefit-card flex items-start gap-5 rounded-2xl border border-primary/10 bg-white p-6 shadow-card shadow-card-hover transition-shadow"
+              className="benefit-card flex items-start gap-5 rounded-2xl border-2 border-primary/10 bg-white p-6 shadow-(--shadow-soft) transition-all duration-300 hover:border-primary/20 hover:shadow-(--shadow-card-hover)"
+              data-aos="zoom-in"
+              data-aos-delay={i * 150}
             >
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>

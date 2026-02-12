@@ -1,10 +1,11 @@
-import Hero from "@/components/Hero";
-import Pricing from "@/components/Pricing";
-import Services from "@/components/Services";
-import Calculator from "@/components/Calculator";
+import Hero from "../components/Hero";
+import Pricing from "../components/Pricing";
+import Services from "../components/Services";
+import Calculator from "../components/Calculator";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
+import LokasiKami from "../components/LokasiKami";
 import FinalCTA from "@/components/FinalCTA";
 import Script from "next/script";
 
@@ -12,7 +13,7 @@ const LOCAL_BUSINESS_JSON = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Mallondri",
-  description: "Layanan laundry profesional standar hotel di Tinambung, Sulawesi Barat. Paket BOS, JURAGAN, SULTAN. Antar jemput gratis, express 3 jam.",
+  description: "Layanan laundry profesional di Tinambung, Sulawesi Barat. Paket BOS, JURAGAN, SULTAN. Antar jemput gratis, express 3 jam.",
   url: "https://mallondri.my.id",
   telephone: "+6281242026524",
   email: "info@mallondri.my.id",
@@ -57,6 +58,7 @@ export default function Home() {
         <WhyChooseUs />
         <Testimonials />
         <Contact />
+        <LokasiKami />
         <FinalCTA />
         </main>
     </>

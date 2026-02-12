@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import HeroImage from "./HeroImage";
+import Image from "next/image";
 import MagneticCTA from "./MagneticCTA";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -66,27 +66,28 @@ export default function Hero() {
     <section
       id="beranda"
       ref={sectionRef}
-      className="relative min-h-screen bg-white pt-24 pb-20 lg:pt-28"
+      className="relative min-h-dvh bg-white pt-28 pb-20 sm:pt-32 lg:pt-36 lg:pb-24"
       aria-label="Hero - Perkenalan Mallondri"
+      data-aos="fade-up"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 px-4 lg:grid-cols-[3fr_2fr] lg:gap-20 lg:px-8">
-        <div ref={contentRef} className="flex flex-col justify-center lg:max-w-xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/60">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 sm:gap-14 sm:px-6 lg:grid-cols-[3fr_2fr] lg:gap-20 lg:px-8">
+        <div ref={contentRef} className="order-2 flex flex-col justify-center lg:order-1 lg:max-w-xl">
+          <p className="section-label">
             Laundry Profesional
           </p>
           <h1
             ref={titleRef}
-            className="mt-3 font-heading text-4xl font-bold leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-[3.25rem]"
+            className="mt-2 font-heading text-3xl font-bold leading-[1.15] tracking-tight text-primary sm:text-4xl sm:mt-3 lg:text-5xl lg:text-[3.25rem]"
           >
             <span className="block">Mencuci Kini</span>
             <span className="block">Bukan Tugasmu</span>
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-primary/80">
+          <p className="mt-4 text-base leading-relaxed text-primary/80 sm:mt-6 sm:text-lg">
             Kami memahami betapa berharganya waktu Anda dan pentingnya penampilan yang selalu rapi. Mallondri Laundry
             hadir sebagai solusi laundry yang praktis, andal, dan berkualitas tinggi di Tinambung.
           </p>
 
-          <ul className="mt-10 flex flex-wrap gap-8 sm:gap-12" role="list" aria-label="Statistik">
+          <ul className="mt-8 flex flex-wrap gap-6 sm:mt-10 sm:gap-12" role="list" aria-label="Statistik">
             {STATS.map((stat) => (
               <li key={stat.value} className="flex flex-col">
                 <span className="font-heading text-2xl font-semibold tracking-tight text-primary sm:text-3xl">
@@ -99,11 +100,11 @@ export default function Hero() {
             ))}
           </ul>
 
-          <div ref={ctaRef} className="mt-12 flex flex-wrap gap-4">
+          <div ref={ctaRef} className="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:gap-4">
             <MagneticCTA>
               <Link
                 href="#paket"
-                className="inline-flex items-center justify-center rounded-xl bg-accent px-7 py-4 text-sm font-medium text-white shadow-card shadow-accent/20 transition-transform hover:-translate-y-0.5"
+                className="focus-ring inline-flex min-h-[48px] items-center justify-center rounded-xl bg-accent px-6 py-3.5 text-base font-semibold text-white shadow-(--shadow-cta) transition-all duration-200 active:scale-[0.98] sm:py-4 sm:text-sm sm:hover:-translate-y-0.5 sm:hover:shadow-[0_6px_20px_-2px_rgb(243_112_33/0.4)]"
               >
                 Lihat Paket Layanan
               </Link>
@@ -111,7 +112,7 @@ export default function Hero() {
             <MagneticCTA>
               <Link
                 href="#kalkulator"
-                className="inline-flex items-center justify-center rounded-xl border border-primary/25 bg-white px-7 py-4 text-sm font-medium text-primary shadow-card transition-colors hover:border-primary hover:bg-primary/5"
+                className="focus-ring inline-flex min-h-[48px] items-center justify-center rounded-xl border-2 border-primary/20 bg-white px-6 py-3.5 text-base font-semibold text-primary transition-all duration-200 active:scale-[0.98] sm:py-4 sm:text-sm sm:hover:border-primary/40 sm:hover:bg-primary/5"
               >
                 Simulasikan Biaya
               </Link>
@@ -121,11 +122,16 @@ export default function Hero() {
 
         <div
           ref={imageRef}
-          className="relative aspect-4/3 overflow-hidden rounded-2xl bg-primary/5 shadow-card lg:aspect-auto lg:min-h-[520px]"
+          className="order-1 relative aspect-4/3 overflow-hidden rounded-2xl border border-primary/8 bg-primary/5 shadow-(--shadow-card) lg:order-2 lg:aspect-auto lg:min-h-[520px]"
+          data-aos="zoom-in"
+          data-aos-delay="150"
         >
-          <HeroImage
-            alt="Layanan laundry profesional Mallondri"
+          <Image
+            src="/img/tok.png"
+            alt="Mallondri Laundry - Mencuci Kini Bukan Tugasmu"
+            fill
             className="object-cover"
+            priority
             sizes="(max-width: 1024px) 100vw, 45vw"
           />
         </div>

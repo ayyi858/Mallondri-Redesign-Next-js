@@ -3,8 +3,9 @@ import { DM_Sans, Manrope, Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import WhatsAppWidget from "@/components/WhatsAppWidget";
 import Chatbot from "@/components/Chatbot";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
+import AOSProvider from "@/components/AOSProvider";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -30,14 +31,21 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
-  title: "Mallondri | Laundry Profesional Standar Hotel - Tinambung Sulawesi Barat",
+  metadataBase: new URL("https://mallondri.my.id"),
+  title: "Mallondri | Mallondri Laundry Tinambung - Laundry Profesional Sulawesi Barat",
   description:
-    "Layanan laundry profesional standar hotel di Tinambung. Paket BOS, JURAGAN, SULTAN. Antar jemput gratis, express 3 jam, 1200+ pelanggan.",
-  keywords: ["laundry", "Tinambung", "Mallondri", "laundry profesional", "Sulawesi Barat"],
+    "Mallondri laundry Tinambung – laundry profesional di Tinambung. Paket BOS, JURAGAN, SULTAN. Antar jemput gratis, express 3 jam, 1200+ pelanggan.",
+  keywords: ["mallondri", "mallondri tinambung", "mallondri laundry", "laundry Tinambung", "laundry Sulawesi Barat"],
   openGraph: {
-    title: "Mallondri - Laundry Profesional Tinambung",
-    description: "Layanan laundry profesional standar hotel. Antar jemput gratis.",
+    title: "Mallondri - Mallondri Laundry Tinambung",
+    description: "Mallondri laundry Tinambung – layanan laundry profesional. Antar jemput gratis.",
     type: "website",
     images: ["/img/logo.jpg"],
   },
@@ -57,11 +65,13 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${manrope.variable} ${inter.variable} ${montserrat.variable} font-sans antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
-        <Chatbot />
-        <WhatsAppWidget />
+        <AOSProvider>
+          <Navbar />
+          {children}
+          <Footer />
+          <Chatbot />
+          <WhatsAppWidget />
+        </AOSProvider>
       </body>
     </html>
   );

@@ -1,26 +1,18 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { NAV_LINKS, WHATSAPP_LINK } from "@/lib/constants";
+import { NAV_LINKS } from "@/lib/constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import MagneticCTA from "./MagneticCTA";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   useGSAP(() => {
-    gsap.from(".nav-item", {
+    gsap.from(".nav-item-animate", {
       opacity: 0,
       y: -8,
       stagger: 0.04,
@@ -30,31 +22,18 @@ export default function Navbar() {
     });
   }, []);
 
-  useGSAP(
-    () => {
-      if (!headerRef.current) return;
-      gsap.to(headerRef.current, {
-        backdropFilter: scrolled ? "blur(12px)" : "blur(0px)",
-        backgroundColor: scrolled ? "rgba(255,255,255,0.88)" : "rgba(255,255,255,0)",
-        boxShadow: scrolled ? "0 1px 0 0 rgba(26,90,135,0.06)" : "0 0 0 0 transparent",
-        duration: 0.4,
-        ease: "power2.out",
-      });
-    },
-    [scrolled]
-  );
-
   return (
     <header
       ref={headerRef}
       role="banner"
       aria-label="Navigasi utama"
-      className="fixed top-0 left-0 right-0 z-50"
+      className="fixed top-0 left-0 right-0 z-50 border-b border-primary/10 bg-white/95 backdrop-blur-md text-primary shadow-[0_4px_16px_rgba(26,90,135,0.06)] pt-[env(safe-area-inset-top)]"
+      data-aos="fade-up"
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link
           href="#beranda"
-          className="nav-item flex items-center"
+          className="nav-item nav-item-animate flex min-h-[44px] items-center"
           aria-label="Mallondri - Beranda"
         >
           <Image
@@ -63,78 +42,61 @@ export default function Navbar() {
             width={160}
             height={40}
             priority
-            className="h-5 w-auto"
+            className="h-5 w-auto md:h-5"
           />
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex" role="menubar">
+        <div className="ml-auto flex items-center gap-3 sm:gap-5">
+          {/* Desktop links */}
+          <ul className="hidden items-center gap-6 md:flex" role="menubar">
+            {NAV_LINKS.map((link) => (
+              <li key={link.href} role="none">
+                <Link
+                  href={link.href}
+                  className="nav-item focus-ring relative inline-block rounded-full px-3 py-1 text-[0.98rem] font-semibold text-primary transition-all duration-200 hover:bg-primary/5 hover:text-primary after:absolute after:bottom-0.5 after:left-3 after:h-0.5 after:w-0 after:bg-primary after:opacity-0 after:transition-all after:duration-200 hover:after:w-5 hover:after:opacity-100"
+                  role="menuitem"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Mobile hamburger - min 44px touch target */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            className="nav-item nav-item-animate inline-flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-1.5 rounded-xl bg-primary/5 p-3 text-primary md:hidden"
+            aria-expanded={mobileOpen}
+            aria-label="Menu navigasi"
+          >
+            <span className={`h-0.5 w-6 rounded bg-current transition-transform ${mobileOpen ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`h-0.5 w-6 rounded bg-current transition-opacity ${mobileOpen ? "opacity-0" : ""}`} />
+            <span className={`h-0.5 w-6 rounded bg-current transition-transform ${mobileOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile menu - scrollable, touch-friendly */}
+      <div
+        className={`md:hidden border-t border-primary/10 bg-white transition-all duration-300 ease-out ${
+          mobileOpen ? "max-h-[min(85vh,28rem)] opacity-100 overflow-y-auto" : "max-h-0 opacity-0 pointer-events-none overflow-hidden"
+        }`}
+      >
+        <ul className="flex flex-col px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
           {NAV_LINKS.map((link) => (
-            <li key={link.href} role="none">
+            <li key={link.href} className="border-b border-primary/5 last:border-0">
               <Link
                 href={link.href}
-                className="nav-item text-sm font-medium text-primary/90 transition-colors hover:text-primary"
-                role="menuitem"
+                onClick={() => setMobileOpen(false)}
+                className="flex min-h-[48px] items-center rounded-lg px-4 py-3 text-base font-semibold text-primary active:bg-primary/5 -mx-1"
               >
                 {link.label}
               </Link>
             </li>
           ))}
         </ul>
-
-        <div className="flex items-center gap-4">
-          <MagneticCTA className="hidden sm:inline-block">
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-item inline-flex items-center justify-center rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-card shadow-accent/20 transition-transform hover:-translate-y-0.5"
-              aria-label="Hubungi via WhatsApp"
-            >
-              WhatsApp
-            </a>
-          </MagneticCTA>
-
-          <button
-            type="button"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="nav-item inline-flex flex-col gap-1.5 rounded p-2 text-primary md:hidden"
-            aria-expanded={mobileOpen}
-            aria-label="Menu navigasi"
-          >
-            <span className={`h-0.5 w-6 bg-current transition-transform ${mobileOpen ? "translate-y-2 rotate-45" : ""}`} />
-            <span className={`h-0.5 w-6 bg-current transition-opacity ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`h-0.5 w-6 bg-current transition-transform ${mobileOpen ? "-translate-y-2 -rotate-45" : ""}`} />
-          </button>
-        </div>
-      </nav>
-
-      {mobileOpen && (
-        <div className="border-t border-primary/10 bg-white/95 backdrop-blur-md md:hidden">
-          <ul className="flex flex-col gap-0 px-4 py-4">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block py-3 text-sm font-medium text-primary"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 block rounded-lg bg-accent py-3 text-center text-sm font-medium text-white"
-              >
-                WhatsApp
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
+      </div>
     </header>
   );
 }

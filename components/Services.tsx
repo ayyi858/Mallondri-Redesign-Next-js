@@ -1,12 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Flip } from "gsap/Flip";
-
-gsap.registerPlugin(ScrollTrigger, Flip);
+import { useState } from "react";
 
 const TABS = [
   { id: "utama", label: "Layanan Utama", icon: "wash" },
@@ -104,51 +98,10 @@ const SERVICES_DATA: Record<
 
 export default function Services() {
   const [activeTab, setActiveTab] = useState<(typeof TABS)[number]["id"]>("utama");
-  const sectionRef = useRef<HTMLElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      gsap.from(sectionRef.current, {
-        opacity: 0,
-        y: 48,
-        duration: 0.7,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 82%",
-          toggleActions: "play none none none",
-        },
-      });
-      gsap.from(".service-card", {
-        opacity: 0,
-        y: 32,
-        stagger: 0.06,
-        duration: 0.5,
-        delay: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 82%",
-          toggleActions: "play none none none",
-        },
-      });
-    },
-    { scope: sectionRef }
-  );
 
   const handleTabChange = (tabId: (typeof TABS)[number]["id"]) => {
     if (tabId === activeTab) return;
-    const state = Flip.getState(".service-card");
     setActiveTab(tabId);
-    requestAnimationFrame(() => {
-      Flip.from(state, {
-        targets: ".service-card",
-        duration: 0.4,
-        stagger: 0.03,
-        ease: "power2.inOut",
-      });
-    });
   };
 
   const items = SERVICES_DATA[activeTab];
@@ -156,14 +109,14 @@ export default function Services() {
   return (
     <section
       id="layanan"
-      ref={sectionRef}
       className="bg-white py-24 lg:py-32"
       aria-labelledby="services-heading"
+      data-aos="fade-up"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/60">
+            <p className="section-label">
               Layanan Kami
             </p>
             <h2 id="services-heading" className="mt-2 font-heading text-3xl font-bold tracking-tight text-primary sm:text-4xl">
@@ -178,7 +131,7 @@ export default function Services() {
           </p>
         </div>
 
-        <div role="tablist" className="mt-12 flex flex-wrap gap-1 border-b border-primary/10">
+        <div role="tablist" className="mt-10 flex flex-nowrap gap-0 overflow-x-auto overscroll-x-contain border-b-2 border-primary/10 pb-px sm:mt-12 sm:flex-wrap sm:gap-1 sm:overflow-visible sm:overscroll-auto">
           {TABS.map((tab) => (
             <button
               key={tab.id}
@@ -186,9 +139,9 @@ export default function Services() {
               role="tab"
               aria-selected={activeTab === tab.id}
               onClick={() => handleTabChange(tab.id)}
-              className={`flex items-center gap-2 border-b-2 px-4 py-3 text-sm font-medium transition-colors ${
+              className={`focus-ring flex min-h-[48px] shrink-0 items-center gap-2 border-b-2 px-4 py-3 text-sm font-semibold transition-colors ${
                 activeTab === tab.id
-                  ? "border-primary text-primary"
+                  ? "border-accent text-primary"
                   : "border-transparent text-primary/70 hover:text-primary"
               }`}
             >
@@ -199,14 +152,17 @@ export default function Services() {
         </div>
 
         <div
-          ref={gridRef}
           role="tabpanel"
           className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          data-aos="fade-up"
+          data-aos-delay="150"
         >
-          {items.map((s) => (
+          {items.map((s, i) => (
             <div
               key={s.name}
-              className="service-card flex flex-col rounded-2xl border border-primary/10 bg-white p-6 shadow-card shadow-card-hover transition-shadow"
+              className="service-card flex flex-col rounded-2xl border-2 border-primary/10 bg-white p-6 shadow-(--shadow-soft) transition-all duration-300 hover:border-primary/20 hover:shadow-(--shadow-card-hover)"
+              data-aos="zoom-in"
+              data-aos-delay={i * 150}
             >
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <ServiceIcon name={s.icon} className="h-5 w-5" />

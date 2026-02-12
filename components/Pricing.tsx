@@ -1,157 +1,175 @@
 "use client";
 
 import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { WHATSAPP_LINK } from "@/lib/constants";
 import MagneticCTA from "./MagneticCTA";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const PLANS = [
   {
     id: "bos",
-    name: "Paket BOS",
-    price: "170.000",
-    original: "150.000",
-    bonus: "+20K bonus",
-    period: "30 hari",
+    name: "BOS",
+    subtitle: "Starter",
+    topup: "150.000",
+    bonus: "20K",
+    total: "170.000",
+    lebihHemat: "20K",
+    period: "30 Hari",
     popular: false,
     features: [
-      "Cuci & setrika reguler",
-      "Antar jemput area Tinambung",
-      "Kualitas standar hotel",
-      "Support 24/7",
+      "Gratis TAS (30K)",
+      "Gratis Antar Jemput",
+      "Berlaku Semua Layanan",
     ],
   },
   {
     id: "juragan",
-    name: "Paket JURAGAN",
-    price: "230.000",
-    original: "200.000",
-    bonus: "+30K bonus",
-    period: "45 hari",
+    name: "JURAGAN",
+    subtitle: "Rekomendasi",
+    topup: "200.000",
+    bonus: "30K",
+    total: "230.000",
+    lebihHemat: "30K",
+    period: "45 Hari",
     popular: true,
     features: [
-      "Semua fitur BOS",
-      "Prioritas express",
-      "Diskon layanan khusus",
-      "Free parfum",
+      "Gratis TAS (30K)",
+      "Gratis Antar Jemput",
+      "Berlaku Semua Layanan",
     ],
   },
   {
     id: "sultan",
-    name: "Paket SULTAN",
-    price: "350.000",
-    original: "300.000",
-    bonus: "+50K bonus",
-    period: "60 hari",
+    name: "SULTAN",
+    subtitle: "Premium",
+    topup: "300.000",
+    bonus: "50K",
+    total: "350.000",
+    lebihHemat: "50K",
+    period: "60 Hari",
     popular: false,
     features: [
-      "Semua fitur JURAGAN",
-      "Kilat 3 jam available",
-      "Dry cleaning included",
-      "Priority pickup",
+      "Gratis TAS (35K)",
+      "Gratis Antar Jemput",
+      "Berlaku Semua Layanan",
     ],
   },
 ];
 
 export default function Pricing() {
   const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      gsap.from(".pricing-card", {
-        opacity: 0,
-        y: 56,
-        stagger: 0.12,
-        duration: 0.7,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 82%",
-          toggleActions: "play none none none",
-        },
-      });
-    },
-    { scope: sectionRef }
-  );
 
   return (
     <section
       id="paket"
       ref={sectionRef}
-      className="scroll-mt-20 bg-slate-50 py-24 lg:py-32"
+      className="scroll-mt-20 py-16 sm:py-20 lg:py-32"
+      style={{
+        background: "linear-gradient(180deg, rgb(248 250 252) 0%, rgb(255 255 255) 40%, rgb(248 250 252) 100%)",
+      }}
       aria-labelledby="pricing-heading"
+      data-aos="fade-up"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/60">
-              Paket Berlangganan
-            </p>
-            <h2
-              id="pricing-heading"
-              className="mt-2 font-heading text-3xl font-bold tracking-tight text-primary sm:text-4xl"
-            >
-              Paket Laundry Mallondri
-            </h2>
-            <p className="mt-3 max-w-2xl text-primary/75">
-              Struktur paket yang jelas untuk kebutuhan pribadi, keluarga, hingga pelanggan dengan volume tinggi.
-            </p>
-          </div>
-          <p className="max-w-sm text-sm text-primary/60 md:text-right">
-            Semua paket sudah termasuk antar jemput area Tinambung dan kualitas setara standar hotel.
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="section-label">Paket Berlangganan</p>
+          <h2
+            id="pricing-heading"
+            className="mt-2 font-heading text-3xl font-bold tracking-tight text-primary sm:text-4xl"
+          >
+            Pilih Paket yang Sesuai
+          </h2>
+          <p className="mt-4 text-base text-primary/70">
+            Investasi topup untuk kebutuhan laundry Anda. Semua paket include gratis tas dan antar jemput area Tinambung.
           </p>
         </div>
 
-        <div ref={cardsRef} className="mt-16 grid gap-8 md:grid-cols-3">
-          {PLANS.map((plan) => (
+        <div
+          className="mt-12 grid gap-5 sm:mt-16 sm:gap-6 md:grid-cols-3 lg:mt-20 lg:gap-8"
+          data-aos="fade-up"
+          data-aos-delay="150"
+        >
+          {PLANS.map((plan, i) => (
             <article
               key={plan.id}
-              className={`pricing-card relative flex flex-col rounded-2xl border bg-white p-8 shadow-card shadow-card-hover transition-all duration-300 hover:border-primary/20 ${
-                plan.popular ? "border-primary/30 ring-2 ring-primary/15" : "border-primary/10"
+              className={`group relative flex flex-col overflow-hidden rounded-2xl bg-white transition-all duration-500 ease-out ${
+                plan.popular
+                  ? "shadow-[0_0_0_1px_rgb(26_90_135/0.08),0_12px_32px_-8px_rgb(26_90_135/0.2)] md:shadow-[0_0_0_1px_rgb(26_90_135/0.08),0_24px_64px_-12px_rgb(26_90_135/0.25),0_0_0_1px_rgb(26_90_135/0.03)] lg:-my-4 lg:scale-[1.03]"
+                  : "shadow-[0_0_0_1px_rgb(26_90_135/0.06),0_4px_20px_-4px_rgb(26_90_135/0.1)] active:scale-[0.99] md:hover:shadow-[0_0_0_1px_rgb(26_90_135/0.1),0_16px_48px_-12px_rgb(26_90_135/0.18)]"
               }`}
+              data-aos="zoom-in"
+              data-aos-delay={i * 150}
             >
               {plan.popular && (
-                <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-accent px-4 py-1.5 text-xs font-semibold text-white shadow-lg shadow-accent/30">
-                  Paling Populer
-                </span>
+                <div
+                  className="absolute inset-x-0 top-0 h-[2px]"
+                  style={{
+                    background: "linear-gradient(90deg, #F37021 0%, #ff8c42 50%, #F37021 100%)",
+                  }}
+                  aria-hidden
+                />
               )}
-              <h3 className="font-heading text-xl font-semibold tracking-tight text-primary">
-                {plan.name}
-              </h3>
-              <div className="mt-5 flex items-baseline gap-2">
-                <span className="font-heading text-3xl font-semibold tracking-tight text-primary">
-                  Rp {plan.price}
+              <div className="flex flex-1 flex-col p-6 sm:p-8">
+                <h3 className={`font-heading text-2xl font-bold tracking-tight ${plan.popular ? "text-primary" : "text-primary/90"}`}>
+                  Paket {plan.name}
+                </h3>
+                <span className={`mt-1 text-xs font-medium uppercase tracking-wider ${plan.popular ? "text-primary/70" : "text-primary/50"}`}>
+                  {plan.subtitle}
                 </span>
-                <span className="text-sm text-primary/55">/{plan.period}</span>
-              </div>
-              <p className="mt-1.5 text-sm text-primary/65">{plan.original} {plan.bonus}</p>
-              <ul className="mt-6 flex-1 space-y-3.5" role="list">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-center gap-3 text-sm text-primary/88">
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                      <svg className="h-3 w-3 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden>
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
+
+                <div className="mt-8 space-y-4 border-b border-primary/5 pb-8">
+                  <div className="flex justify-between text-sm text-primary/70">
+                    <span>Topup</span>
+                    <span className="tabular-nums font-semibold text-primary">Rp {plan.topup}</span>
+                  </div>
+                  <div className="flex justify-between text-sm text-primary/70">
+                    <span>Bonus</span>
+                    <span className="tabular-nums font-semibold text-accent">+{plan.bonus}</span>
+                  </div>
+                  <div className="flex items-baseline justify-between pt-4">
+                    <span className="text-sm font-medium text-primary/70">Total nilai</span>
+                    <span className="font-heading text-2xl font-bold tabular-nums tracking-tight text-primary">
+                      Rp {plan.total}
                     </span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <MagneticCTA className="mt-8">
-                <a
-                  href={`${WHATSAPP_LINK}?text=Halo, saya tertarik ${plan.name}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex w-full justify-center rounded-xl bg-accent px-4 py-3.5 text-sm font-medium text-white shadow-card transition-colors hover:bg-[#e6651d]"
-                >
-                  Pesan via WhatsApp
-                </a>
-              </MagneticCTA>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-md bg-accent/10 px-2 py-0.5 text-xs font-semibold text-accent">
+                      Hemat Rp {plan.lebihHemat}
+                    </span>
+                    <span className="text-xs text-primary/50">·</span>
+                    <span className="text-xs text-primary/60">Berlaku {plan.period}</span>
+                  </div>
+                </div>
+
+                <ul className="mt-8 flex-1 space-y-4" role="list">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-center gap-3 text-sm text-primary/85">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/10">
+                        <svg className="h-3 w-3 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5} aria-hidden>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="border-t border-primary/5 p-6 sm:p-8">
+                <MagneticCTA>
+                  <a
+                    href={`${WHATSAPP_LINK}?text=Halo, saya tertarik Paket ${plan.name}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`focus-ring flex min-h-[48px] w-full items-center justify-center rounded-xl px-5 py-3.5 text-center text-base font-semibold transition-all duration-200 active:scale-[0.98] sm:text-sm ${
+                      plan.popular
+                        ? "bg-accent text-white shadow-[0_4px_14px_-2px_rgb(243_112_33/0.4)] hover:bg-accent/90 hover:shadow-[0_6px_20px_-4px_rgb(243_112_33/0.45)]"
+                        : "border border-accent/30 bg-white text-accent hover:border-accent/50 hover:bg-accent/5"
+                    }`}
+                  >
+                    Daftar Sekarang
+                  </a>
+                </MagneticCTA>
+              </div>
             </article>
           ))}
         </div>

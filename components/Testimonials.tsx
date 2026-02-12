@@ -4,9 +4,6 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const REVIEWS = [
   {
@@ -15,7 +12,7 @@ const REVIEWS = [
     package: "Paket JURAGAN",
     text: "Paket JURAGAN sangat worth it. Cucian selalu rapi dan wangi. Antar jemput gratis bikin saya tidak perlu keluar rumah.",
     rating: 5,
-    image: "/img/testimonials/1.jpg",
+    image: "/img/1.jpg",
   },
   {
     name: "Ahmad Rizki",
@@ -23,7 +20,7 @@ const REVIEWS = [
     package: "Layanan Express",
     text: "Sering pakai layanan express karena jam kerja padat. Hasil cucian bersih dan tepat waktu. Recommended.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&crop=face",
+    image: "/img/2.jpg",
   },
   {
     name: "Rina Sari",
@@ -31,7 +28,7 @@ const REVIEWS = [
     package: "Paket SULTAN",
     text: "Paket SULTAN cocok untuk kebutuhan laundry kantor dan pribadi. Kualitas konsisten, pelayanan ramah.",
     rating: 5,
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=128&h=128&fit=crop&crop=face",
+    image: "/img/3.jpg",
   },
 ];
 
@@ -39,23 +36,6 @@ export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
-
-  useGSAP(
-    () => {
-      gsap.from(sectionRef.current, {
-        opacity: 0,
-        y: 48,
-        duration: 0.7,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 82%",
-          toggleActions: "play none none none",
-        },
-      });
-    },
-    { scope: sectionRef }
-  );
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -84,11 +64,12 @@ export default function Testimonials() {
       ref={sectionRef}
       className="overflow-hidden bg-slate-50 py-24 lg:py-32"
       aria-labelledby="testimonials-heading"
+      data-aos="fade-up"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/60">
+            <p className="section-label">
               Bukti Sosial
             </p>
             <h2
@@ -102,7 +83,7 @@ export default function Testimonials() {
             </p>
           </div>
 
-          <div className="hidden gap-3 rounded-2xl border border-primary/10 bg-white/70 px-4 py-3 text-sm text-primary/70 shadow-card md:flex md:items-center">
+          <div className="hidden gap-3 rounded-2xl border-2 border-primary/10 bg-white/80 px-4 py-3 text-sm text-primary/70 shadow-(--shadow-soft) md:flex md:items-center">
             <div className="flex -space-x-2">
               <span className="h-7 w-7 rounded-full bg-primary/20" />
               <span className="h-7 w-7 rounded-full bg-primary/15" />
@@ -127,7 +108,7 @@ export default function Testimonials() {
                 className="flex shrink-0 flex-col items-center px-4 md:px-16"
                 style={{ width: `${100 / REVIEWS.length}%` }}
               >
-                <div className="max-w-2xl rounded-3xl border border-primary/10 bg-white/90 p-10 shadow-card shadow-card-hover backdrop-blur-sm transition-shadow md:p-12">
+                <div className="max-w-2xl rounded-3xl border-2 border-primary/10 bg-white p-10 shadow-(--shadow-soft) backdrop-blur-sm transition-all duration-300 hover:border-primary/20 hover:shadow-(--shadow-card-hover) md:p-12">
                   <div className="flex items-center gap-5">
                     <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-primary/10">
                       <Image
@@ -164,10 +145,10 @@ export default function Testimonials() {
                 onClick={() => setIndex(i)}
                 aria-pressed={index === i}
                 aria-label={`Testimoni ${i + 1}`}
-                className={`h-1.5 rounded-full border border-transparent transition-all duration-300 ${
+                className={`focus-ring h-2 rounded-full transition-all duration-300 ${
                   index === i
-                    ? "w-8 border-primary/40 bg-primary"
-                    : "w-2 border-primary/10 bg-primary/15 hover:bg-primary/30"
+                    ? "w-8 bg-accent"
+                    : "w-2.5 bg-primary/20 hover:bg-primary/35"
                 }`}
               />
             ))}

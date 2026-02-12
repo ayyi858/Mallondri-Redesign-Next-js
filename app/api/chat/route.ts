@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
-const SYSTEM_PROMPT = `Kamu adalah asisten virtual Mallondri, layanan laundry profesional standar hotel di Tinambung, Sulawesi Barat.
+const SYSTEM_PROMPT = `Kamu adalah asisten virtual Mallondri, layanan laundry profesional di Tinambung, Sulawesi Barat.
 Tugasmu: menjawab pertanyaan tentang layanan, paket, harga, dan jam operasional dengan ramah dan singkat.
 
 Informasi penting:

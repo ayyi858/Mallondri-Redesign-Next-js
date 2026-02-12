@@ -22,11 +22,12 @@ export default function Footer() {
   return (
     <footer
       role="contentinfo"
-      className="border-t border-primary/10 bg-white py-16"
+      className="border-t-2 border-primary/10 bg-white py-12 sm:py-16"
       aria-label="Footer"
+      data-aos="fade-up"
     >
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
             <Link href="#beranda" className="inline-block" aria-label="Mallondri - Beranda">
               <Image
@@ -38,7 +39,7 @@ export default function Footer() {
               />
             </Link>
             <p className="mt-4 text-sm text-primary/70">
-              Laundry profesional standar hotel. Tinambung, Sulawesi Barat.
+              Laundry profesional. Tinambung, Sulawesi Barat.
             </p>
           </div>
           <div>
@@ -48,7 +49,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-2" role="list">
               {FOOTER_LINKS.paket.map((l) => (
                 <li key={l.label}>
-                  <Link href={l.href} className="text-sm text-primary/80 hover:text-primary">
+                  <Link href={l.href} className="text-sm text-primary/80 transition-colors hover:text-primary">
                     {l.label}
                   </Link>
                 </li>
@@ -64,7 +65,7 @@ export default function Footer() {
                 <li key={l.label}>
                   <Link
                     href={l.href}
-                    className="text-sm text-primary/80 hover:text-primary"
+                    className="text-sm text-primary/80 transition-colors hover:text-primary"
                     {...(l.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   >
                     {l.label}
@@ -82,7 +83,7 @@ export default function Footer() {
                 <li key={l.label}>
                   <a
                     href={l.href}
-                    className="text-sm text-primary/80 hover:text-primary"
+                    className="text-sm text-primary/80 transition-colors hover:text-primary"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -93,15 +94,15 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-primary/10 pt-8 md:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t-2 border-primary/10 pt-8 sm:mt-16 md:flex-row md:gap-4">
           <p className="text-sm text-primary/70">
             Mallondri · Tinambung, Sulawesi Barat
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="text-sm text-primary/70 hover:text-primary">
+            <Link href="/privacy" className="text-sm text-primary/70 transition-colors hover:text-primary">
               Privacy
             </Link>
-            <Link href="/terms" className="text-sm text-primary/70 hover:text-primary">
+            <Link href="/terms" className="text-sm text-primary/70 transition-colors hover:text-primary">
               Terms
             </Link>
           </div>

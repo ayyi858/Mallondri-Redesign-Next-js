@@ -9,7 +9,8 @@
   --white: #FFFFFF;
   --shadow-soft: 0 4px 24px -4px rgb(26 90 135 / 0.08);
   --shadow-card: 0 8px 32px -8px rgb(26 90 135 / 0.12);
-  --shadow-card-hover: 0 20px 48px -12px rgb(26 90 135 / 0.18);
+  --shadow-card-hover: 0 24px 56px -12px rgb(26 90 135 / 0.16);
+  --shadow-cta: 0 4px 14px -2px rgb(243 112 33 / 0.35);
 }
 
 @theme inline {
@@ -24,6 +25,15 @@
 * {
   scroll-behavior: smooth;
 }
+
+/* Safe area untuk notched devices (iPhone X+) */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
 
 body {
   background: var(--background);
@@ -45,6 +55,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 .shadow-card-hover:hover {
   box-shadow: var(--shadow-card-hover);
+}
+
+/* Focus ring aksesibilitas */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Section label konsisten */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(26 90 135 / 0.6);
 }
 
 /* Gradient overlay untuk hero image */

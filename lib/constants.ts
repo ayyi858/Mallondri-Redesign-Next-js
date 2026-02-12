@@ -8,5 +8,6 @@ export const NAV_LINKS = [
   { href: "#kalkulator", label: "Kalkulator" },
   { href: "#keunggulan", label: "Keunggulan" },
   { href: "#testimoni", label: "Testimoni" },
+  { href: "#lokasi", label: "Lokasi" },
   { href: "#kontak", label: "Kontak" },
 ] as const;
