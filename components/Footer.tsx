@@ -2,15 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 
 const FOOTER_LINKS = {
-  paket: [
-    { label: "Paket BOS", href: "#paket" },
-    { label: "Paket JURAGAN", href: "#paket" },
-    { label: "Paket SULTAN", href: "#paket" },
+  tentang: [
+    { label: "Tentang Kami", href: "/tentang-kami" },
+    { label: "Paket BOS", href: "/paket" },
+    { label: "Paket JURAGAN", href: "/paket" },
+    { label: "Paket SULTAN", href: "/paket" },
   ],
   layanan: [
-    { label: "Layanan Utama", href: "#layanan" },
-    { label: "Layanan Khusus", href: "#layanan" },
-    { label: "Kalkulator", href: "#kalkulator" },
+    { label: "Layanan", href: "/layanan" },
+    { label: "Kalkulator", href: "/#kalkulator" },
   ],
   kontak: [
     { label: "WhatsApp", href: "https://wa.me/6281242026524" },
@@ -44,10 +44,10 @@ export default function Footer() {
           </div>
           <div>
             <h3 className="font-heading text-sm font-semibold uppercase tracking-wide text-primary">
-              Paket
+              Navigasi
             </h3>
             <ul className="mt-4 space-y-2" role="list">
-              {FOOTER_LINKS.paket.map((l) => (
+              {FOOTER_LINKS.tentang.map((l) => (
                 <li key={l.label}>
                   <Link href={l.href} className="text-sm text-primary/80 transition-colors hover:text-primary">
                     {l.label}
@@ -98,12 +98,21 @@ export default function Footer() {
           <p className="text-sm text-primary/70">
             Mallondri · Tinambung, Sulawesi Barat
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+            <Link href="/tentang-kami" className="text-sm text-primary/70 transition-colors hover:text-primary">
+              Tentang Kami
+            </Link>
+            <Link href="/paket" className="text-sm text-primary/70 transition-colors hover:text-primary">
+              Paket
+            </Link>
+            <Link href="/layanan" className="text-sm text-primary/70 transition-colors hover:text-primary">
+              Layanan
+            </Link>
             <Link href="/privacy" className="text-sm text-primary/70 transition-colors hover:text-primary">
-              Privacy
+              Privasi
             </Link>
             <Link href="/terms" className="text-sm text-primary/70 transition-colors hover:text-primary">
-              Terms
+              Syarat & Ketentuan
             </Link>
           </div>
         </div>

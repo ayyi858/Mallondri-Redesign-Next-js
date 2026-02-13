@@ -1,4 +1,10 @@
 import Hero from "../components/Hero";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Beranda",
+  description: "Mallondri laundry Tinambung – laundry profesional di Tinambung. Paket BOS, JURAGAN, SULTAN. Antar jemput gratis, express 3 jam, 1200+ pelanggan.",
+};
 import Pricing from "../components/Pricing";
 import Services from "../components/Services";
 import Calculator from "../components/Calculator";
@@ -12,13 +18,22 @@ import Script from "next/script";
 const LOCAL_BUSINESS_JSON = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "Mallondri",
-  description: "Layanan laundry profesional di Tinambung, Sulawesi Barat. Paket BOS, JURAGAN, SULTAN. Antar jemput gratis, express 3 jam.",
+  "@id": "https://mallondri.my.id/#localbusiness",
+  name: "Mallondri Laundry Tinambung",
+  alternateName: "Mallondri",
+  description: "Mallondri laundry Tinambung – layanan laundry profesional di Tinambung, Sulawesi Barat. Paket BOS, JURAGAN, SULTAN. Antar jemput gratis, express 3 jam, 1200+ pelanggan.",
   url: "https://mallondri.my.id",
   telephone: "+6281242026524",
   email: "info@mallondri.my.id",
+  image: "https://mallondri.my.id/img/favicon.ico",
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: -3.5007419276499063,
+    longitude: 119.01689008829196,
+  },
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Jln Poros, Tino Limboro, Desa Lekopa'dis",
     addressLocality: "Tinambung",
     addressRegion: "Sulawesi Barat",
     addressCountry: "ID",
@@ -38,7 +53,12 @@ const LOCAL_BUSINESS_JSON = {
     },
   ],
   priceRange: "Rp",
-  image: "https://mallondri.my.id/og-image.jpg",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    reviewCount: "1200",
+    bestRating: "5",
+  },
 };
 
 export default function Home() {
