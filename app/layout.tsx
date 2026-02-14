@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { WHATSAPP_LINK } from "@/lib/constants";
+import { WHATSAPP_LINK, SITE_URL, SITEMAP_URL } from "@/lib/constants";
 import { DM_Sans, Manrope, Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 
@@ -41,8 +41,6 @@ export const viewport = {
   viewportFit: "cover",
 };
 
-const SITE_URL = "https://mallondri.my.id";
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: "Mallondri Laundry Tinambung",
@@ -80,7 +78,7 @@ export default function RootLayout({
   return (
     <html lang="id" className="scroll-smooth">
       <head>
-        <link rel="sitemap" type="application/xml" href={`${SITE_URL}/sitemap.xml`} />
+        <link rel="sitemap" type="application/xml" title="Sitemap" href={SITEMAP_URL} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

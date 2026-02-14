@@ -1,5 +1,6 @@
 import Hero from "../components/Hero";
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Beranda",
@@ -18,14 +19,14 @@ import Script from "next/script";
 const LOCAL_BUSINESS_JSON = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://mallondri.my.id/#localbusiness",
+  "@id": `${SITE_URL}/#localbusiness`,
   name: "Mallondri Laundry Tinambung",
   alternateName: "Mallondri",
   description: "Mallondri laundry Tinambung – layanan laundry profesional di Tinambung, Sulawesi Barat. Paket BOS, JURAGAN, SULTAN. Antar jemput gratis, express 3 jam, 1200+ pelanggan.",
-  url: "https://mallondri.my.id",
+  url: SITE_URL,
   telephone: "+6281242026524",
   email: "info@mallondri.my.id",
-  image: "https://mallondri.my.id/img/favicon.ico",
+  image: `${SITE_URL}/img/favicon.ico`,
   geo: {
     "@type": "GeoCoordinates",
     latitude: -3.5007419276499063,
